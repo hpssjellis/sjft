@@ -48,7 +48,7 @@ Take a simple Matrix math caculation using Tensorflowjs Tensors and Scalars
 
 <div id="myDiv1234Code"> 
 
-<input id="myButton01" type=button value="Use GPU math" onclick="{
+<input id="myButton1234" type=button value="Use GPU math" onclick="{
                                                                                                                                  
   const myA = tf.tensor1d([10,20,30])
   const myB = tf.scalar(2.1)
@@ -67,7 +67,7 @@ Take a simple Matrix math caculation using Tensorflowjs Tensors and Scalars
   }
 }">
 Click here to see the working HTML code.
-</textarea><br>
+</textarea><br><br>
 
 
 <input id="myUpdate1234" type=button value="Update and Run" style="visibility:hidden;" onclick="{
@@ -107,18 +107,17 @@ Array1D:<input id="myText01" type=text value="[10,20,30]"><br>
 Scalar:<input id="myText02" type=text value=2.1><br>
 result.getValues()[<input id="myText03" type=number value=2>] <= -1 to show all array values<br><br>
 
-<input id="myButton02" type=button value="Use GPU math dynamic" onclick="{
-   var math = dl.ENV.math
-   var a = dl.Array1D.new(eval(document.getElementById('myText01').value))
-   var b = dl.Scalar.new(document.getElementById('myText02').value)
-   math.scope(function() {
-      var result = math.add(a, b);
+<input id="myButton12345" type=button value="Use GPU math dynamic" onclick="{
+
+   const myA = tf.tensor1d(eval(document.getElementById('myText01').value))
+   const mB = tf.scalar(document.getElementById('myText02').value)
+   const myResult = tf.add(myA, myB);
       var mySize = document.getElementById('myText03').value  
        if (mySize == ''){mySize = -2} // if empty make it negative
        if (mySize >= 0 ) {                                                  
-          document.getElementById('myDiv02').innerHTML = result.getValues()[mySize]     // Float32Array([3, 4, 5])
+          document.getElementById('myDiv12345').innerHTML = myResult.dataSync()[mySize]    
       } else {
-          document.getElementById('myDiv02').innerHTML = result.getValues()
+          document.getElementById('myDiv12345').innerHTML = myResult.dataSync()
       }
                                                          
   })
