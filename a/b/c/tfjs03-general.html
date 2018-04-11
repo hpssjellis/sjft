@@ -105,14 +105,15 @@ And now use the same Matrix math but make it completely dynamci using farily eas
 
 Array1D:<input id="myText01" type=text value="[10,20,30]"><br>
 Scalar:<input id="myText02" type=text value=2.1><br>
-result.getValues()[<input id="myText03" type=number value=2>] <= -1 to show all array values<br><br>
+myResult.dataSync()[<input id="myText03" type=number value=2>] <= -1 to show all array values<br><br>
 
 <input id="myButton12345" type=button value="Use GPU math dynamic" onclick="{
 
    const myA = tf.tensor1d(eval(document.getElementById('myText01').value))
    const myB = tf.scalar(document.getElementById('myText02').value)
    const myResult = tf.add(myA, myB);
-   const mySize = document.getElementById('myText03').value  
+   const mySize = document.getElementById('myText03').value 
+   alert(myResult.shape)                                                                         
    if (mySize == ''){mySize = -2} // if empty make it negative
    if (mySize >= 0 ) {                                                  
        document.getElementById('myDiv12345').innerHTML = myResult.dataSync()[mySize]    
