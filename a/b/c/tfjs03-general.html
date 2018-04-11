@@ -119,7 +119,7 @@ myResult.dataSync()[<input id="myText03" type=number value=2>] <= -1 to show all
 
    if (document.getElementById('myText03').value == ''){document.getElementById('myText03').value = -2} // if empty make it negative                                                                        
    if (document.getElementById('myText03').value >= 0 ) {                                                  
-       document.getElementById('myDiv12345').innerHTML = myResult.dataSync()[mySize]    
+       document.getElementById('myDiv12345').innerHTML = myResult.dataSync()[document.getElementById('myText03').value]    
    } else {
        document.getElementById('myDiv12345').innerHTML = myResult.dataSync()
    }
