@@ -55,7 +55,7 @@ Blah Blah Blah Blah
   const myA = dl.tensor1d([10,20,30])
   const myB = dl.scalar(2.1)
   const myResult = dl.add(myA, myB);
-  document.getElementById('myDiv01').innerHTML = result.dataSync()    
+  document.getElementById('myDiv01').innerHTML = myResult.dataSync()    
   })                                                          
 }"><br><br>
 
@@ -189,8 +189,7 @@ Use at your own risk!
 <script>
 myOnce123 = true    // so textareas are only clicked once
 myOnce124 = true  
-myOnce125 = true  
-myOnce126 = true  
+
 function myTextGrow(myT, myB){
    var myCursorStart = document.getElementById(myT).selectionStart
    var myCursorEnd = document.getElementById(myT).selectionEnd
