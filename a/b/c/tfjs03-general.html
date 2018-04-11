@@ -110,7 +110,7 @@ result.getValues()[<input id="myText03" type=number value=2>] <= -1 to show all 
 <input id="myButton12345" type=button value="Use GPU math dynamic" onclick="{
 
    const myA = tf.tensor1d(eval(document.getElementById('myText01').value))
-   const mB = tf.scalar(document.getElementById('myText02').value)
+   const myB = tf.scalar(document.getElementById('myText02').value)
    const myResult = tf.add(myA, myB);
    const mySize = document.getElementById('myText03').value  
    if (mySize == ''){mySize = -2} // if empty make it negative
