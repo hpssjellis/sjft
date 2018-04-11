@@ -113,7 +113,8 @@ myResult.dataSync()[<input id="myText03" type=number value=2>] <= -1 to show all
    const myB = tf.scalar(document.getElementById('myText02').value)
    const myResult = tf.add(myA, myB);
    const mySize = document.getElementById('myText03').value 
-   alert(myResult.shape)                                                                         
+   alert(myResult.shape)  
+                                                                            myResult.print('verbose')
    if (mySize == ''){mySize = -2} // if empty make it negative
    if (mySize >= 0 ) {                                                  
        document.getElementById('myDiv12345').innerHTML = myResult.dataSync()[mySize]    
