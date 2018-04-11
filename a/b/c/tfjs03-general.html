@@ -112,15 +112,14 @@ result.getValues()[<input id="myText03" type=number value=2>] <= -1 to show all 
    const myA = tf.tensor1d(eval(document.getElementById('myText01').value))
    const mB = tf.scalar(document.getElementById('myText02').value)
    const myResult = tf.add(myA, myB);
-      var mySize = document.getElementById('myText03').value  
-       if (mySize == ''){mySize = -2} // if empty make it negative
-       if (mySize >= 0 ) {                                                  
-          document.getElementById('myDiv12345').innerHTML = myResult.dataSync()[mySize]    
-      } else {
-          document.getElementById('myDiv12345').innerHTML = myResult.dataSync()
-      }
+   const mySize = document.getElementById('myText03').value  
+   if (mySize == ''){mySize = -2} // if empty make it negative
+   if (mySize >= 0 ) {                                                  
+       document.getElementById('myDiv12345').innerHTML = myResult.dataSync()[mySize]    
+   } else {
+       document.getElementById('myDiv12345').innerHTML = myResult.dataSync()
+   }
                                                          
-  })
 }"><br><br>
 
 </div>
