@@ -103,14 +103,14 @@ And now use the same Matrix math but make it completely dynamci using farily eas
 
 <div id="myDiv12345Code"> 
 
-Array1D:<input id="myText01" type=text value="[10,20,30]"><br>
-Scalar:<input id="myText02" type=text value=2.1><br>
-myResult.dataSync()[<input id="myText03" type=number value=2>] <= -1 to show all array values. 
+tf.tensor1d([ <input id="myText01" type=text value="10,20,30"> ])<br>
+tf.scalar(<input id="myText02" type=text value=2.1>)<br>
+myResult.dataSync()[ <input id="myText03" type=number value=2> ] <= -1 to show all array values. 
                                                                    Note: First value reference with 0 etc<br><br>
 
 <input id="myButton12345" type=button value="Use GPU math dynamic" onclick="{
 
-   const myA = tf.tensor1d(eval(document.getElementById('myText01').value))
+   const myA = tf.tensor1d(document.getElementById('myText01').value.split(',')) // must make the string into an array for the tensor1d
    const myB = tf.scalar(document.getElementById('myText02').value)
    const myResult = tf.add(myA, myB);
  
