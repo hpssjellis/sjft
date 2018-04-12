@@ -97,7 +97,7 @@ function test(xs, ys) {
     //console.log('Expected', ys);
     //console.log('Got', predictedYs.map((p) => p.dataSync()[0]));
      
-  document.getElementById('myDiv123').innerHTML +=  'Expected ' + ys + 'Got '+   predictedYs.map((p) => p.dataSync()[0])  +'<br>'                                                                            
+  document.getElementById('myDiv123').innerHTML +=  'Expected ' + ys + '<br>Got '+   predictedYs.map((p) => p.dataSync()[0])  +'<br><br>'                                                                            
                                                                                       
   })
 }
@@ -111,7 +111,8 @@ const data = {
                                                                                        
 test(data.xs, data.ys);
 train(data.xs, data.ys, 50, () => {
-   document.getElementById('myDiv123').innerHTML += 'After Training a =' + a.dataSync() + ' b = '+ b.dataSync()+ ' c = ' + c.dataSync() + '<br><br>'
+   document.getElementById('myDiv123').innerHTML += 'After Training a = ' + a.dataSync().toFixed(3) +
+     ' b = '+ b.dataSync().toFixed(3)+ ' c = ' + c.dataSync().toFixed(3) + '<br><br>'
   //console.log(  `After training: a=${a.dataSync()}, b=${b.dataSync()}, c=${c.dataSync()}`)
                                                                                                                                                                            
   test(data.xs, data.ys);
