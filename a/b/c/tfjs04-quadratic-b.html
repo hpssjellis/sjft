@@ -97,7 +97,9 @@ function test(xs, ys) {
     //console.log('Expected', ys);
     //console.log('Got', predictedYs.map((p) => p.dataSync()[0]));
      
-  document.getElementById('myDiv123').innerHTML +=  'Expected ' + ys + '<br>Got '+   predictedYs.map((p) => p.dataSync()[0])  +'<br><br>'                                                                            
+  document.getElementById('myDiv123').innerHTML +=  'Expected ' + ys + '<br>Got '+   predictedYs.map(
+     (p) => parseFloat(p.dataSync()[0]).toFixed(3)
+  )  +'<br><br>'                                                                            
                                                                                       
   })
 }
