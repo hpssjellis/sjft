@@ -47,7 +47,7 @@ Blah Blah Blah Blah
 <div id="myDiv123Code"> 
 
 
-<input id="myButton01" type=button value="Quadratic y = a * x^2 + b * x + c" onclick="{
+<input id="myButton123" type=button value="Quadratic y = a * x^2 + b * x + c" onclick="{
 const a = tf.variable(tf.scalar(Math.random()));
 const b = tf.variable(tf.scalar(Math.random()));
 const c = tf.variable(tf.scalar(Math.random()));
@@ -108,15 +108,14 @@ const data = {
 };
  document.getElementById('myDiv123').innerHTML +='Before training: using random coefficients'
 //console.log('Before training: using random coefficients')
+                                                                                       
 test(data.xs, data.ys);
 train(data.xs, data.ys, 50, () => {
-   document.getElementById('myDiv123').innerHTML += ''After Training a =' + a.dataSync() + ' b = '+ b.dataSync()+ ' c = ' +c.dataSync()
+   document.getElementById('myDiv123').innerHTML += 'After Training a =' + a.dataSync() + ' b = '+ b.dataSync()+ ' c = ' +c.dataSync()
   //console.log(  `After training: a=${a.dataSync()}, b=${b.dataSync()}, c=${c.dataSync()}`)
-                                                                                      
-                                                                                      
+                                                                                                                                                                           
   test(data.xs, data.ys);
-                                                                                   
-                                                                                      
+                                                                                                                                                                        
 });
                                                              
                                                                             
@@ -179,14 +178,14 @@ Solve for x=<input id="myText14" type=text value=4><br><br><br>
 
 
 
-<input id="myButton02" type=button value="Dynamic Quadratic" onclick="{
-  document.getElementById('myButton02').style.backgroundColor = 'red'  
+<input id="myButton124" type=button value="Dynamic Quadratic" onclick="{
+  document.getElementById('myButton124').style.backgroundColor = 'red'  
   setTimeout(function() {
                                                                  
                                                                                                                                                                                                            
     });  
     
-    document.getElementById('myButton02').style.backgroundColor = 'green'                                                           
+    document.getElementById('myButton124').style.backgroundColor = 'green'                                                           
   }, 100)                                                                            
                                                                  
                                                                  
