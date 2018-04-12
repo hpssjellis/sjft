@@ -97,7 +97,7 @@ function test(xs, ys) {
     //console.log('Expected', ys);
     //console.log('Got', predictedYs.map((p) => p.dataSync()[0]));
      
-  document.getElementById('myDiv123').innerHTML +=  'Expected ' + ys + 'Got '+   predictedYs.map((p) => p.dataSync()[0])                                                                              
+  document.getElementById('myDiv123').innerHTML +=  'Expected ' + ys + 'Got '+   predictedYs.map((p) => p.dataSync()[0])  +'<br>'                                                                            
                                                                                       
   })
 }
@@ -106,12 +106,12 @@ const data = {
   xs: [0, 1, 2, 3],
   ys: [1.1, 5.9, 16.8, 33.9]
 };
- document.getElementById('myDiv123').innerHTML +='Before training: using random coefficients'
+ document.getElementById('myDiv123').innerHTML ='Before training: using random coefficients <br>'
 //console.log('Before training: using random coefficients')
                                                                                        
 test(data.xs, data.ys);
 train(data.xs, data.ys, 50, () => {
-   document.getElementById('myDiv123').innerHTML += 'After Training a =' + a.dataSync() + ' b = '+ b.dataSync()+ ' c = ' +c.dataSync()
+   document.getElementById('myDiv123').innerHTML += 'After Training a =' + a.dataSync() + ' b = '+ b.dataSync()+ ' c = ' + c.dataSync() + '<br><br>'
   //console.log(  `After training: a=${a.dataSync()}, b=${b.dataSync()}, c=${c.dataSync()}`)
                                                                                                                                                                            
   test(data.xs, data.ys);
