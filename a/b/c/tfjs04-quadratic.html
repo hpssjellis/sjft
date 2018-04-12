@@ -50,52 +50,116 @@ Blah Blah Blah Blah
 From deeplearnjs tutorial at: <a href="https://deeplearnjs.org/docs/tutorials/ml_beginners.html">https://deeplearnjs.org/docs/tutorials/ml_beginners.html</a><br><br>
 
 <input id="myButton01" type=button value="Quadratic y = a * x^2 + b * x + c" onclick="{
-    //var graph = new deeplearn.Graph();
-    var x_1 = graph.placeholder('x', []);
-    var a = graph.variable('a', deeplearn.Scalar.new(Math.random()));
-    var b = graph.variable('b', deeplearn.Scalar.new(Math.random()));
-    var c = graph.variable('c', deeplearn.Scalar.new(Math.random()));
-    var order2 = graph.multiply(a, graph.square(x_1));
-    var order1 = graph.multiply(b, x_1);
-    var y_1 = graph.add(graph.add(order2, order1), c);
-    var yLabel_1 = graph.placeholder('y label', []);
-    var cost_1 = graph.meanSquaredCost(y_1, yLabel_1);
-    var math = dl.ENV.math;
-    var session_1 = new deeplearn.Session(graph, math);
-    document.getElementById('myDiv01').innerHTML   =  'Solving the Quadratic y = 3x^2 + 2x + 1<br>'      
-    document.getElementById('myDiv01').innerHTML   +=  'By training the browser to work towards a given line with error<br>'   
-    document.getElementById('myDiv01').innerHTML   +=  'Defined by [0,1.1],[1,5.9],[2,16.8],[3,33.9]<br>'                        
-    document.getElementById('myDiv01').innerHTML   +=  '<br>using x = 4 the Quadratic result should be about 57.0 +- 2<br>' 
-    math.scope(function (keep) {
-        var result = session_1.eval(y_1, [{ tensor: x_1, data: deeplearn.Scalar.new(4) }]);
-       document.getElementById('myDiv01').innerHTML   += 'Initial Guess =' + result.getValues()+'<br><br>'
-        var xs = [
-            deeplearn.Scalar.new(0), deeplearn.Scalar.new(1), deeplearn.Scalar.new(2),
-            deeplearn.Scalar.new(3)
-        ];
-        var ys = [
-            deeplearn.Scalar.new(1.1), deeplearn.Scalar.new(5.9), deeplearn.Scalar.new(16.8),
-            deeplearn.Scalar.new(33.9)
-        ];
-        var shuffledInputProviderBuilder = new deeplearn.InCPUMemoryShuffledInputProviderBuilder([xs, ys]);        
-        var _a = shuffledInputProviderBuilder.getInputProviders();
-        var xProvider = _a[0];
-        var yProvider = _a[1];
-        var NUM_BATCHES = 20;
-        var BATCH_SIZE = xs.length;
-        var LEARNING_RATE = .01;
-        var optimizer = new deeplearn.SGDOptimizer(LEARNING_RATE);
-       
-         for (var i = 0; i < NUM_BATCHES; i++) {
-            var costValue = session_1.train(cost_1, [{ tensor: x_1, data: xProvider }, { tensor: yLabel_1, data: yProvider }], BATCH_SIZE, optimizer, deeplearn.CostReduction.MEAN);
-            document.getElementById('myDiv01').innerHTML   += 'average cost: ' + costValue.get() + '<br>'
-        }
-        result = session_1.eval(y_1, [{ tensor: x_1, data: deeplearn.Scalar.new(4) }]);
-       document.getElementById('myDiv01').innerHTML   += '<br><br>After training '+NUM_BATCHES+' batches with a learning rate of '+ LEARNING_RATE+ '<br>'                                                                 
-       document.getElementById('myDiv01').innerHTML   += 'With an input of 4 the output =' + result.getValues() + '<br>'                                                                 
-                                                                                                                                                                                                                                
-    });                                                           
-                                                                            
+   const a = tf.variable(tf.scalar(Math.random()));
+const b = tf.variable(tf.scalar(Math.random()));
+const c = tf.variable(tf.scalar(Math.random()));
+
+
+// Step 2. Create an optimizer, we will use this later
+const learningRate = 0.01;
+const optimizer = tf.train.sgd(learningRate);
+
+// Step 3. Write our training process functions.
+
+
+/*
+ * This function represents our 'model'. Given an input 'x' it will try and predict
+ * the appropriate output 'y'.
+ *
+ * This could be as complicated a 'neural net' as we would like, but we can just
+ * directly model the quadratic equation we are trying to model.
+ *
+ * It is also sometimes referred to as the 'forward' step of our training process.
+ * Though we will use the same function for predictions later.
+ *
+ *
+ * @return number predicted y value
+ */
+function predict(input) {
+  // y = a * x ^ 2 + b * x + c
+  return tf.tidy(() => {
+    const x = tf.scalar(input);
+
+    const ax2 = a.mul(x.square());
+    const bx = b.mul(x);
+    const y = ax2.add(bx).add(c);
+
+    return y;
+  });
+}
+
+/*
+ * This will tell us how good the 'prediction' is given what we actually expected.
+ *
+ * prediction is a tensor with our predicted y value.
+ * actual number is a number with the y value the model should have predicted.
+ */
+function loss(prediction, actual) {
+  // Having a good error metric is key for training a machine learning model
+  const error = tf.scalar(actual).sub(prediction).square();
+  return error.asScalar();
+}
+
+/*
+ * This will iteratively train our model. We test how well it is doing
+ * after numIterations by calculating the mean error over all the given
+ * samples after our training.
+ *
+ * xs - training data x values
+ * ys — training data y values
+ */
+async function train(xs, ys, numIterations, done) {
+  for (let iter = 0; iter < numIterations; iter++) {
+    for (let i = 0; i < xs.length; i++) {
+      // Minimize is where the magic happens, we must return a
+      // numerical estimate (i.e. loss) of how well we are doing using the
+      // current state of the variables we created at the start.
+
+      // This optimizer does the 'backward' step of our training data
+      // updating variables defined previously in order to minimize the
+      // loss.
+      optimizer.minimize(() => {
+        // Feed the examples into the model
+        const pred = predict(xs[i]);
+        const predLoss = loss(pred, ys[i]);
+
+        return predLoss;
+      });
+    }
+
+    // Use tf.nextFrame to not block the browser.
+    await tf.nextFrame();
+  }
+
+  done();
+}
+/*
+ * This function compare expected results with the predicted results from
+ * our model.
+ */
+function test(xs, ys) {
+  tf.tidy(() => {
+    const predictedYs = xs.map(predict);
+    console.log('Expected', ys);
+    console.log('Got', predictedYs.map((p) => p.dataSync()[0]));
+  })
+}
+
+
+const data = {
+  xs: [0, 1, 2, 3],
+  ys: [1.1, 5.9, 16.8, 33.9]
+};
+
+// Lets see how it does before training.
+console.log('Before training: using random coefficients')
+test(data.xs, data.ys);
+train(data.xs, data.ys, 50, () => {
+  console.log(
+      `After training: a=${a.dataSync()}, b=${b.dataSync()}, c=${c.dataSync()}`)
+  test(data.xs, data.ys);
+});
+                                                             
                                                                             
 }"><br>
 
