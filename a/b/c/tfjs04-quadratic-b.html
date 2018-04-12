@@ -39,7 +39,6 @@
 
 
 
-
 <div style="font-size:15px; background-color:lightyellow; width:88%;  border:5px solid blue; padding:5px; margin:5px;"> 
 Blah Blah Blah Blah 
 </div><br>
@@ -95,8 +94,11 @@ async function train(xs, ys, numIterations, done) {
 function test(xs, ys) {
   tf.tidy(() => {
     const predictedYs = xs.map(predict);
-    console.log('Expected', ys);
-    console.log('Got', predictedYs.map((p) => p.dataSync()[0]));
+    //console.log('Expected', ys);
+    //console.log('Got', predictedYs.map((p) => p.dataSync()[0]));
+     
+  document.getElementById('myDiv123').innerHTML +=  'Expected ' + ys + 'Got '+   predictedYs.map((p) => p.dataSync()[0])                                                                              
+                                                                                      
   })
 }
 
@@ -104,13 +106,17 @@ const data = {
   xs: [0, 1, 2, 3],
   ys: [1.1, 5.9, 16.8, 33.9]
 };
-
-console.log('Before training: using random coefficients')
+ document.getElementById('myDiv123').innerHTML +='Before training: using random coefficients'
+//console.log('Before training: using random coefficients')
 test(data.xs, data.ys);
 train(data.xs, data.ys, 50, () => {
-  console.log(
-      `After training: a=${a.dataSync()}, b=${b.dataSync()}, c=${c.dataSync()}`)
+   document.getElementById('myDiv123').innerHTML += ''After Training a =' + a.dataSync() + ' b = '+ b.dataSync()+ ' c = ' +c.dataSync()
+  //console.log(  `After training: a=${a.dataSync()}, b=${b.dataSync()}, c=${c.dataSync()}`)
+                                                                                      
+                                                                                      
   test(data.xs, data.ys);
+                                                                                   
+                                                                                      
 });
                                                              
                                                                             
