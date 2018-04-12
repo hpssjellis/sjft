@@ -111,8 +111,8 @@ const data = {
                                                                                        
 test(data.xs, data.ys);
 train(data.xs, data.ys, 50, () => {
-   document.getElementById('myDiv123').innerHTML += 'After Training a = ' + a.dataSync().toFixed(3) +
-     ' b = '+ b.dataSync().toFixed(3)+ ' c = ' + c.dataSync().toFixed(3) + '<br><br>'
+   document.getElementById('myDiv123').innerHTML += 'After Training a = ' + parseFloat(a.dataSync()).toFixed(3) +
+     ' b = '+  parseFloat(b.dataSync()).toFixed(3)+ ' c = ' +  parseFloat(c.dataSync()).toFixed(3) + '<br><br>'
   //console.log(  `After training: a=${a.dataSync()}, b=${b.dataSync()}, c=${c.dataSync()}`)
                                                                                                                                                                            
   test(data.xs, data.ys);
