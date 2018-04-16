@@ -123,6 +123,19 @@ train(data.xs, data.ys, 50, () => {
 
    document.getElementById('myDiv123').innerHTML += 'So the final equation is Y = ' + parseFloat(a.dataSync()).toFixed(3) +
      '*X^2 + '+  parseFloat(b.dataSync()).toFixed(3)+ '*X + ' +  parseFloat(c.dataSync()).toFixed(3) + '<br><br>'
+
+
+
+  document.getElementById('myDiv123').innerHTML += 'Trying for x the value 4<br>'
+
+   const data2 = {
+      xs: [4],
+      ys: [57]
+   };
+
+
+  test(data2.xs, data2.ys);
+
                                                                                                                                                                         
 });
                                                              
@@ -277,6 +290,19 @@ train(data.xs, data.ys, document.getElementById('myText01').value, () => {
 
    document.getElementById('myDiv124').innerHTML += 'So the final equation is Y = ' + parseFloat(a.dataSync()).toFixed(3) +
      '*X^2 + '+  parseFloat(b.dataSync()).toFixed(3)+ '*X + ' +  parseFloat(c.dataSync()).toFixed(3) + '<br><br>'
+
+
+
+  document.getElementById('myDiv124').innerHTML += 'Trying for x the value 4<br>'
+
+   const data2 = {
+      xs: [4],
+      ys: [57]
+   };
+
+
+  test(data2.xs, data2.ys);
+
                                                                                                                                                                         
 });
                                                                                                                                                                                                                
