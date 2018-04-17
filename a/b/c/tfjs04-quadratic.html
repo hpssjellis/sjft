@@ -39,78 +39,90 @@
 
 
 
-
 <div style="font-size:15px; background-color:lightyellow; width:88%;  border:5px solid blue; padding:5px; margin:5px;"> 
-Blah Blah Blah Blah 
+Click the button and if it works look at the Machine Learning example of how to teach the machine to learn
+a curve.  
 </div><br>
 
 
 <div id="myDiv123Code"> 
 
 
-<input id="myButton01" type=button value="Quadratic y = a * x^2 + b * x + c" onclick="{
+<input id="myButton123" type=button value="Quadratic y = a * x^2 + b * x + c" onclick="{
 const a = tf.variable(tf.scalar(Math.random()));
 const b = tf.variable(tf.scalar(Math.random()));
 const c = tf.variable(tf.scalar(Math.random()));
-
 const learningRate = 0.01;
 const optimizer = tf.train.sgd(learningRate);
-
 function predict(input) {
   // y = a * x ^ 2 + b * x + c
   return tf.tidy(() => {
     const x = tf.scalar(input);
-
     const ax2 = a.mul(x.square());
     const bx = b.mul(x);
     const y = ax2.add(bx).add(c);
-
     return y;
   });
 }
-
 function loss(prediction, actual) {
-  // Having a good error metric is key for training a machine learning model
   const error = tf.scalar(actual).sub(prediction).square();
   return error.asScalar();
 }
-
 async function train(xs, ys, numIterations, done) {
   for (let iter = 0; iter < numIterations; iter++) {
     for (let i = 0; i < xs.length; i++) {
-      optimizer.minimize(() => {
+     myLoss = 0
+      optimizer.minimize( function(myLoss) {
         const pred = predict(xs[i]);
-        const predLoss = loss(pred, ys[i]);
+        const predLoss = loss(pred, ys[i])
 
+        if ( i == 0){
+            document.getElementById('myDiv123').innerHTML +=  'Batch #' + iter + ' LOSS = ' + predLoss + '<br>'
+        }
         return predLoss;
       });
     }
-
     await tf.nextFrame();
   }
-
+  document.getElementById('myButton123').style.backgroundColor = 'green'  
   done();
 }
-
 function test(xs, ys) {
   tf.tidy(() => {
-    const predictedYs = xs.map(predict);
-    console.log('Expected', ys);
-    console.log('Got', predictedYs.map((p) => p.dataSync()[0]));
+     const predictedYs = xs.map(predict);
+   
+    document.getElementById('myDiv123').innerHTML +=  'Expected ' + ys + '<br>Got '+   predictedYs.map(
+       (p) => parseFloat(p.dataSync()[0]).toFixed(3))  +'<br><br>'                                                                                                                                                                
   })
 }
-
 const data = {
   xs: [0, 1, 2, 3],
   ys: [1.1, 5.9, 16.8, 33.9]
 };
 
-console.log('Before training: using random coefficients')
+
+
+
+ document.getElementById('myButton123').style.backgroundColor = 'red'  
+
+ document.getElementById('myDiv123').innerHTML ='Before training: using random coefficients <br>'
+                                                                                       
 test(data.xs, data.ys);
-train(data.xs, data.ys, 50, () => {
-  console.log(
-      `After training: a=${a.dataSync()}, b=${b.dataSync()}, c=${c.dataSync()}`)
+train(data.xs, data.ys, 20, () => {
+   document.getElementById('myDiv123').innerHTML += '<br>After Training a = ' + parseFloat(a.dataSync()).toFixed(3) +
+     ' b = '+  parseFloat(b.dataSync()).toFixed(3)+ ' c = ' +  parseFloat(c.dataSync()).toFixed(3) + '<br><br>'
+        
+                                                                                                                                                                           
   test(data.xs, data.ys);
+   document.getElementById('myDiv123').innerHTML += 'So the final equation is Y = ' + parseFloat(a.dataSync()).toFixed(3) +
+     '*X^2 + '+  parseFloat(b.dataSync()).toFixed(3)+ '*X + ' +  parseFloat(c.dataSync()).toFixed(3) + '<br><br>'
+  document.getElementById('myDiv123').innerHTML += 'Trying for x the value 4<br>'
+   const data2 = {
+      xs: [4],
+      ys: [57]
+   };
+  test(data2.xs, data2.ys);
+                                                                                                                                                                        
 });
                                                              
                                                                             
@@ -156,14 +168,15 @@ Click here to see the working HTML code.
 
 
 <div style="font-size:15px; background-color:lightyellow; width:88%;  border:5px solid blue; padding:5px; margin:5px;"> 
-Blah Blah Blah Blah 
+this button is the same as the previous one, except it has been made much more powerful by adding a few textboxes
+to make most of the variables dynamic.
 </div><br>
 
 
 <div id="myDiv124Code"> 
 
 Batches:<input id="myText01" type=number value="20"> Note: 100 takes a few seconds longer to train<br>
-Learning Rate:<input id="myText02" type=text value=0.01> Note: Small changes may inprove the learning<br>
+Learning Rate:<input id="myText02" type=text value=0.01> Note: Small changes may inprove the learning<br><br>
 Curve fit when x=<input id="myX0" type=text value=0 size=3> y=<input id="myY0" type=text value=1.1 size=3><br>
 Curve fit when x=<input id="myX1" type=text value=1 size=3> y=<input id="myY1" type=text value=5.9 size=3><br>
 Curve fit when x=<input id="myX2" type=text value=2 size=3> y=<input id="myY2" type=text value=16.8 size=3><br>
@@ -173,62 +186,81 @@ Solve for x=<input id="myText14" type=text value=4><br><br><br>
 
 
 
-<input id="myButton02" type=button value="Dynamic Quadratic" onclick="{
-  document.getElementById('myButton02').style.backgroundColor = 'red'  
-  setTimeout(function() {
-                                                                 
-    var graph = new deeplearn.Graph();
-    var x_1 = graph.placeholder('x', []);
-    var a = graph.variable('a', deeplearn.Scalar.new(Math.random()));
-    var b = graph.variable('b', deeplearn.Scalar.new(Math.random()));
-    var c = graph.variable('c', deeplearn.Scalar.new(Math.random()));
-    var order2 = graph.multiply(a, graph.square(x_1));
-    var order1 = graph.multiply(b, x_1);
-    var y_1 = graph.add(graph.add(order2, order1), c);
-    var yLabel_1 = graph.placeholder('y label', []);
-    var cost_1 = graph.meanSquaredCost(y_1, yLabel_1);
-    var math = dl.ENV.math;
-    var session_1 = new deeplearn.Session(graph, math);
-    document.getElementById('myDiv02').innerHTML   =  'Solving the Quadratic y = ax^2 + bx + c<br>'      
-    document.getElementById('myDiv02').innerHTML   += 'By training the browser to work towards the given line above<br>'  
-    document.getElementById('myDiv02').innerHTML   += 'without any knowledge of a, b or c<br>'    
-    math.scope(function (keep) {
-        var result = session_1.eval(y_1, [{ tensor: x_1, data: deeplearn.Scalar.new(4) }]);
-        //console.log(result.shape);
-        //console.log(result.getValues());
-       document.getElementById('myDiv02').innerHTML   += 'Initial Guess =' + result.getValues()+'<br><br>'
-        var xs = [
-            deeplearn.Scalar.new(document.getElementById('myX0').value), 
-            deeplearn.Scalar.new(document.getElementById('myX1').value), 
-            deeplearn.Scalar.new(document.getElementById('myX2').value),
-            deeplearn.Scalar.new(document.getElementById('myX3').value)
-        ];
-        var ys = [
-            deeplearn.Scalar.new(document.getElementById('myY0').value), 
-            deeplearn.Scalar.new(document.getElementById('myY1').value), 
-            deeplearn.Scalar.new(document.getElementById('myY2').value),
-            deeplearn.Scalar.new(document.getElementById('myY3').value)
-        ];
-        var shuffledInputProviderBuilder = new deeplearn.InCPUMemoryShuffledInputProviderBuilder([xs, ys]);        
-        var _a = shuffledInputProviderBuilder.getInputProviders();
-        var xProvider = _a[0];
-        var yProvider = _a[1];
-        var NUM_BATCHES = document.getElementById('myText01').value;
-        var BATCH_SIZE = xs.length;
-        var LEARNING_RATE = document.getElementById('myText02').value;
-        var optimizer = new deeplearn.SGDOptimizer(LEARNING_RATE);
-        for (var i = 0; i < NUM_BATCHES; i++) {
-            var costValue = session_1.train(cost_1, [{ tensor: x_1, data: xProvider }, { tensor: yLabel_1, data: yProvider }], BATCH_SIZE, optimizer, deeplearn.CostReduction.MEAN);
-           document.getElementById('myDiv02').innerHTML   += 'average cost: ' + costValue.get() + '<br>'
+<input id="myButton124" type=button value="Dynamic Quadratic" onclick="{
+const a = tf.variable(tf.scalar(Math.random()));
+const b = tf.variable(tf.scalar(Math.random()));
+const c = tf.variable(tf.scalar(Math.random()));
+const learningRate =  document.getElementById('myText02').value    // 0.01;
+const optimizer = tf.train.sgd(learningRate);
+function predict(input) {
+  // y = a * x ^ 2 + b * x + c
+  return tf.tidy(() => {
+    const x = tf.scalar(input);
+    const ax2 = a.mul(x.square());
+    const bx = b.mul(x);
+    const y = ax2.add(bx).add(c);
+    return y;
+  });
+}
+function loss(prediction, actual) {
+  const error = tf.scalar(actual).sub(prediction).square();
+  return error.asScalar();
+}
+async function train(xs, ys, numIterations, done) {
+  for (let iter = 0; iter < numIterations; iter++) {
+    for (let i = 0; i < xs.length; i++) {
+      optimizer.minimize(() => {
+        const pred = predict(xs[i]);
+        const predLoss = loss(pred, ys[i]);
+        if ( i == 0){
+            document.getElementById('myDiv124').innerHTML +=  'Batch #' + iter + ' LOSS = ' + predLoss + '<br>'
         }
-        result = session_1.eval(y_1, [{ tensor: x_1, data: deeplearn.Scalar.new(document.getElementById('myText14').value) }]);
-        document.getElementById('myDiv02').innerHTML   += '<br><br>After training '+NUM_BATCHES+' batches with a learning rate of '+ LEARNING_RATE+ '<br>'                                                                 
-        document.getElementById('myDiv02').innerHTML   += 'With an input of '+document.getElementById('myText14').value+' the output =' + result.getValues() + '<br>'                                                                 
-                                                                                                                                                                                                                                  
-    });  
+        return predLoss;
+      });
+    }
+    await tf.nextFrame();
+  }
+  done();
+  document.getElementById('myButton124').style.backgroundColor = 'green'   
+}
+function test(xs, ys) {
+  tf.tidy(() => {
+     const predictedYs = xs.map(predict);
+   if (ys==0){ys='?'}
+    document.getElementById('myDiv124').innerHTML +=  'Expected ' + ys + '<br>Got '+   predictedYs.map(
+       (p) => parseFloat(p.dataSync()[0]).toFixed(3))  +'<br><br>'                                                                                                                                                                
+  })
+}
+  document.getElementById('myButton124').style.backgroundColor = 'red'  
+
+                                                                 
+ const data = {
+  xs: [ document.getElementById('myX0').value  , document.getElementById('myX1').value, document.getElementById('myX2').value, document.getElementById('myX3').value],
+  ys: [document.getElementById('myY0').value, document.getElementById('myY1').value, document.getElementById('myY2').value, document.getElementById('myY3').value]
+};
+ document.getElementById('myDiv124').innerHTML = 'Before training: using random coefficients <br>'
+                                                                                       
+test(data.xs, data.ys);
+train(data.xs, data.ys, document.getElementById('myText01').value, () => {
+   document.getElementById('myDiv124').innerHTML += '<br>After Training a = ' + parseFloat(a.dataSync()).toFixed(3) +
+     ' b = '+  parseFloat(b.dataSync()).toFixed(3)+ ' c = ' +  parseFloat(c.dataSync()).toFixed(3) + '<br><br>'
+                                                                                                                                                                           
+  test(data.xs, data.ys);
+   document.getElementById('myDiv124').innerHTML += 'So the final equation is Y = ' + parseFloat(a.dataSync()).toFixed(3) +
+     '*X^2 + '+  parseFloat(b.dataSync()).toFixed(3)+ '*X + ' +  parseFloat(c.dataSync()).toFixed(3) + '<br><br>'
+  document.getElementById('myDiv124').innerHTML += 'Trying for x the value '+document.getElementById('myText14').value+'<br>'
+   const data2 = {
+      xs: [document.getElementById('myText14').value],
+      ys: [0]
+   };
+  test(data2.xs, data2.ys);
+                                                                                                                                                                        
+});
+                                                                                                                                                                                                               
+ 
     
-    document.getElementById('myButton02').style.backgroundColor = 'green'                                                           
-  }, 100)                                                                            
+                                                        
+                                                                         
                                                                  
                                                                  
 }"><br><br>
@@ -267,90 +299,10 @@ Click here to see the working HTML code.
 
 
 
-<div style="font-size:15px; background-color:lightyellow; width:88%;  border:5px solid blue; padding:5px; margin:5px;"> 
-Blah Blah Blah Blah 
-</div><br>
-
-
-<div id="myDiv125Code"> 
-
-<input id="myButton125" type=button value="Tensorflowjs Version?"  onclick="{
-      document.getElementById('myDiv125').innerHTML = 'This version of Tensorflowjs = ' + tf.version.tfjs                                                           
-}"><br><br>
-
-</div>
-<div id='myDiv125'>...</div><br>
-<textarea id="myTextarea125"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
-  if (myOnce125){
-     myTextGrow('myTextarea125', 'myDiv125Code')
-     document.getElementById('myUpdate125').style.visibility = 'visible'
-     myOnce125 = false
-  }
-}">
-Click here to see the working HTML code.
-</textarea><br>
-
-
-<input id="myUpdate125" type=button value="Update and Run" style="visibility:hidden;" onclick="{
-   // first remove first and last line since they are injected
-  myFred = document.getElementById('myTextarea125').value.split('\n')
-  myFred.pop()
-  myFred.push('')
-  myFred.shift()
-  myFred.shift()
-  myJoe = myFred.join('\n')
-  document.getElementById('myDiv125Code').innerHTML =    myJoe 
-  document.getElementById('myButton125').click()
-                                             
-}">
-
-
-<br><br><br><hr><br><br><br><br>
 
 
 
 
-
-
-<div style="font-size:15px; background-color:lightyellow; width:88%;  border:5px solid blue; padding:5px; margin:5px;"> 
-Blah Blah Blah Blah 
-</div><br>
-
-
-<div id="myDiv126Code"> 
-
-<input id="myButton126" type=button value="Tensorflowjs Version?"  onclick="{
-      document.getElementById('myDiv126').innerHTML = 'This version of Tensorflowjs = ' + tf.version.tfjs                                                           
-}"><br><br>
-
-</div>
-<div id='myDiv126'>...</div><br>
-<textarea id="myTextarea126"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
-  if (myOnce126){
-     myTextGrow('myTextarea126', 'myDiv126Code')
-     document.getElementById('myUpdate126').style.visibility = 'visible'
-     myOnce126 = false
-  }
-}">
-Click here to see the working HTML code.
-</textarea><br>
-
-
-<input id="myUpdate126" type=button value="Update and Run" style="visibility:hidden;" onclick="{
-   // first remove first and last line since they are injected
-  myFred = document.getElementById('myTextarea126').value.split('\n')
-  myFred.pop()
-  myFred.push('')
-  myFred.shift()
-  myFred.shift()
-  myJoe = myFred.join('\n')
-  document.getElementById('myDiv126Code').innerHTML =    myJoe 
-  document.getElementById('myButton126').click()
-                                             
-}">
-
-
-<br><br><br><hr><br><br><br><br>
 
 
 
@@ -394,8 +346,7 @@ Use at your own risk!
 <script>
 myOnce123 = true    // so textareas are only clicked once
 myOnce124 = true  
-myOnce125 = true  
-myOnce126 = true  
+ 
 function myTextGrow(myT, myB){
    var myCursorStart = document.getElementById(myT).selectionStart
    var myCursorEnd = document.getElementById(myT).selectionEnd
