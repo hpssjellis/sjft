@@ -19,7 +19,9 @@ https://hpssjellis.github.io/sjft//a/b/c/tfjs05-matrix-math.html
 
 
 
-https://hpssjellis.github.io/sjft//a/b/c/
+https://hpssjellis.github.io/sjft//a/b/c/tfjs07-xor-neural-network.html
+
+
 
 
 
