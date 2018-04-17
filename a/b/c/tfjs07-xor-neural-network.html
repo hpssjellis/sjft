@@ -48,7 +48,7 @@ off output if neither input is on or both inputs are on. On output if either of 
 
 
     
-<div id="myDiv123Code"> 
+<div id="myDiv531Code"> 
 
 
 
@@ -145,7 +145,7 @@ async function testXor(i) {
 <h2 align=center> Tensorflowjs xOr Neural Network.</h2>
 Click the button to train the network. Pull down the select box to test<br>
 
-Training <input type=button value="learnXOR()" onclick="{ 
+Training <input type=button531 value="learnXOR()" onclick="{ 
    learnXor()
 }">
 
@@ -176,27 +176,27 @@ Testing: Make a selection from this list  <select size=1 onChange="{
 
 </div>
 <div id='myDiv531'>...</div><br>
-<textarea id="myTextarea123"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
-  if (myOnce123){
-     myTextGrow('myTextarea123', 'myDiv123Code')
-     document.getElementById('myUpdate123').style.visibility = 'visible'
-     myOnce123 = false
+<textarea id="myTextarea531"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
+  if (myOnce531){
+     myTextGrow('myTextarea531', 'myDiv531Code')
+     document.getElementById('myUpdate531').style.visibility = 'visible'
+     myOnce531 = false
   }
 }">
 Click here to see the working HTML code.
 </textarea><br>
 
 
-<input id="myUpdate123" type=button value="Update and Run" style="visibility:hidden;" onclick="{
+<input id="myUpdate531" type=button value="Update and Run" style="visibility:hidden;" onclick="{
    // first remove first and last line since they are injected
-  myFred = document.getElementById('myTextarea123').value.split('\n')
+  myFred = document.getElementById('myTextarea531').value.split('\n')
   myFred.pop()
   myFred.push('')
   myFred.shift()
   myFred.shift()
   myJoe = myFred.join('\n')
-  document.getElementById('myDiv123Code').innerHTML =    myJoe 
-  document.getElementById('myButton123').click()
+  document.getElementById('myDiv531Code').innerHTML =    myJoe 
+  document.getElementById('myButton531').click()
                                              
 }">
 
