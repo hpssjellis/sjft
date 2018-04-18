@@ -178,16 +178,6 @@ Testing: Make a selection from this list  <select size=1 onChange="{
 
 </div>
 <div id='myDiv531'>...</div><br>
-<textarea id="myTextarea531"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
-  if (myOnce531){
-     myTextGrow('myTextarea531', 'myDiv531Code')
-     document.getElementById('myUpdate531').style.visibility = 'visible'
-     myOnce531 = false
-  }
-}">
-Click here to see the working HTML code.
-</textarea><br>
-
 
 <input id="myUpdate531" type=button value="Update and Run" style="visibility:hidden;" onclick="{
    // first remove first and last line since they are injected
@@ -201,6 +191,19 @@ Click here to see the working HTML code.
   document.getElementById('myButton531').click()
                                              
 }">
+
+<textarea id="myTextarea531"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
+  if (myOnce531){
+     myTextGrow('myTextarea531', 'myDiv531Code')
+     document.getElementById('myUpdate531').style.visibility = 'visible'
+     myOnce531 = false
+  }
+}">
+Click here to see the working HTML code.
+</textarea><br>
+
+
+
 
 
 <br><br><br><hr><br><br><br><br>
