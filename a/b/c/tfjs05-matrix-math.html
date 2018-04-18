@@ -98,16 +98,6 @@ class myTensor extends tf.Tensor {
 
 </div>
 <div id='myDiv333'>...</div><br>
-<textarea id="myTextarea333"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
-  if (myOnce333){
-     myTextGrow('myTextarea333', 'myDiv333Code')
-     document.getElementById('myUpdate333').style.visibility = 'visible'
-     myOnce333 = false
-  }
-}">
-Click here to see the working HTML code.
-</textarea><br>
-
 
 <input id="myUpdate333" type=button value="Update and Run" style="visibility:hidden;" onclick="{
    // first remove first and last line since they are injected
@@ -121,6 +111,19 @@ Click here to see the working HTML code.
   document.getElementById('myButton333').click()
                                              
 }">
+
+<textarea id="myTextarea333"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
+  if (myOnce333){
+     myTextGrow('myTextarea333', 'myDiv333Code')
+     document.getElementById('myUpdate333').style.visibility = 'visible'
+     myOnce333 = false
+  }
+}">
+Click here to see the working HTML code.
+</textarea><br>
+
+
+
 
 
 
