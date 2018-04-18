@@ -581,16 +581,6 @@ for (c=0;  c <= parseInt(document.getElementById('myKvalue').value)-1;   c++){
 
 </div>
 <div id='myDiv987'>...</div><br>
-<textarea id="myTextarea987"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
-  if (myOnce987){
-     myTextGrow('myTextarea987', 'myDiv987Code')
-     document.getElementById('myUpdate987').style.visibility = 'visible'
-     myOnce987 = false
-  }
-}">
-Click here to see the working HTML code.
-</textarea><br>
-
 
 <input id="myUpdate987" type=button value="Update and Run" style="visibility:hidden;" onclick="{
    // first remove first and last line since they are injected
@@ -604,6 +594,19 @@ Click here to see the working HTML code.
   document.getElementById('myButton987').click()
                                              
 }">
+
+<textarea id="myTextarea987"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
+  if (myOnce987){
+     myTextGrow('myTextarea987', 'myDiv987Code')
+     document.getElementById('myUpdate987').style.visibility = 'visible'
+     myOnce987 = false
+  }
+}">
+Click here to see the working HTML code.
+</textarea><br>
+
+
+
 
 
 <br><br><br><hr><br><br><br><br>
