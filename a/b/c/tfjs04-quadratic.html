@@ -270,16 +270,6 @@ train(data.xs, data.ys, document.getElementById('myText01').value, () => {
 
 </div>
 <div id='myDiv124'>...</div><br>
-<textarea id="myTextarea124"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
-  if (myOnce124){
-     myTextGrow('myTextarea124', 'myDiv124Code')
-     document.getElementById('myUpdate124').style.visibility = 'visible'
-     myOnce124 = false
-  }
-}">
-Click here to see the working HTML code.
-</textarea><br>
-
 
 <input id="myUpdate124" type=button value="Update and Run" style="visibility:hidden;" onclick="{
    // first remove first and last line since they are injected
@@ -293,6 +283,19 @@ Click here to see the working HTML code.
   document.getElementById('myButton124').click()
                                              
 }">
+
+<textarea id="myTextarea124"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
+  if (myOnce124){
+     myTextGrow('myTextarea124', 'myDiv124Code')
+     document.getElementById('myUpdate124').style.visibility = 'visible'
+     myOnce124 = false
+  }
+}">
+Click here to see the working HTML code.
+</textarea><br>
+
+
+
 
 
 <br><br><br><hr><br><br><br><br>
