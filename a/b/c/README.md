@@ -25,5 +25,8 @@ https://hpssjellis.github.io/sjft//a/b/c/tfjs07-xor-neural-network.html
 
 
 
+https://hpssjellis.github.io/sjft//a/b/c/tfjs08-knn.html
+
+https://hpssjellis.github.io/sjft//a/b/c/
 
 https://hpssjellis.github.io/sjft//a/b/c/
