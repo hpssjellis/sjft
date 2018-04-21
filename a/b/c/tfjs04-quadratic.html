@@ -49,11 +49,14 @@ a curve.
 
 
 <input id="myButton123" type=button value="Quadratic y = a * x^2 + b * x + c" onclick="{
+                                                                                       
 const a = tf.variable(tf.scalar(Math.random()));
 const b = tf.variable(tf.scalar(Math.random()));
 const c = tf.variable(tf.scalar(Math.random()));
+                                                                                       
 const learningRate = 0.01;
 const optimizer = tf.train.sgd(learningRate);
+                                                                                       
 function predict(input) {
   // y = a * x ^ 2 + b * x + c
   return tf.tidy(() => {
@@ -64,10 +67,14 @@ function predict(input) {
     return y;
   });
 }
+                                                                                       
+                                                                                       
 function loss(prediction, actual) {
   const error = tf.scalar(actual).sub(prediction).square();
   return error.asScalar();
 }
+                                                                                       
+                                                                                       
 async function train(xs, ys, numIterations, done) {
   for (let iter = 0; iter < numIterations; iter++) {
     for (let i = 0; i < xs.length; i++) {
@@ -87,6 +94,8 @@ async function train(xs, ys, numIterations, done) {
   document.getElementById('myButton123').style.backgroundColor = 'green'  
   done();
 }
+                                                                                       
+                                                                                       
 function test(xs, ys) {
   tf.tidy(() => {
      const predictedYs = xs.map(predict);
@@ -95,33 +104,37 @@ function test(xs, ys) {
        (p) => parseFloat(p.dataSync()[0]).toFixed(3))  +'<br><br>'                                                                                                                                                                
   })
 }
+                                                                                       
+                                                                                       
 const data = {
   xs: [0, 1, 2, 3],
   ys: [1.1, 5.9, 16.8, 33.9]
 };
 
 
-
-
- document.getElementById('myButton123').style.backgroundColor = 'red'  
-
- document.getElementById('myDiv123').innerHTML ='Before training: using random coefficients <br>'
+document.getElementById('myButton123').style.backgroundColor = 'red' 
                                                                                        
-test(data.xs, data.ys);
+document.getElementById('myDiv123').innerHTML ='Before training: using random coefficients <br>'
+                                                                                       
+test(data.xs, data.ys);  // test before training
+                                                                                       
 train(data.xs, data.ys, 20, () => {
    document.getElementById('myDiv123').innerHTML += '<br>After Training a = ' + parseFloat(a.dataSync()).toFixed(3) +
      ' b = '+  parseFloat(b.dataSync()).toFixed(3)+ ' c = ' +  parseFloat(c.dataSync()).toFixed(3) + '<br><br>'
         
                                                                                                                                                                            
-  test(data.xs, data.ys);
+  test(data.xs, data.ys);  // test after training
+                                                                                       
    document.getElementById('myDiv123').innerHTML += 'So the final equation is Y = ' + parseFloat(a.dataSync()).toFixed(3) +
      '*X^2 + '+  parseFloat(b.dataSync()).toFixed(3)+ '*X + ' +  parseFloat(c.dataSync()).toFixed(3) + '<br><br>'
   document.getElementById('myDiv123').innerHTML += 'Trying for x the value 4<br>'
-   const data2 = {
+   
+const data2 = {
       xs: [4],
       ys: [57]
    };
-  test(data2.xs, data2.ys);
+                                                                                       
+test(data2.xs, data2.ys);  // test the unknown after training
                                                                                                                                                                         
 });
                                                              
