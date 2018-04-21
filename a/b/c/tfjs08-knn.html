@@ -71,7 +71,10 @@ The K-Nearest Neighbor code in Tensorflowjs is fairly easy. It is just calculati
       const myKNN = mySquaredDiffAdded.pow(mySqrt) 
       myKnnArray = await myKNN.data()  
                                                                  
-                                                                                       
+     
+      // Ops stringed format                                                           
+      // myKnnArray  = await tf.mul(tf.sub(myData, myUnknown),tf.sub(myData, myUnknown)).sum(axis).pow(mySqrt)
+                                                           
       document.getElementById('myDiv124').innerHTML =  'The KNN distance from the origin at 0,0 to the location 3,4<br>'   
       document.getElementById('myDiv124').innerHTML +=  'The KNN tensor is [' + myKnnArray +']<br>'                                                               
  }() )                                                                
@@ -118,6 +121,71 @@ Click here to see the working HTML code.
 
 
 
+
+<div style="font-size:15px; background-color:lightyellow; width:88%;  border:5px solid blue; padding:5px; margin:5px;"> 
+Same thing as above but stringing the operations together in one line which is strangely easier to read
+ 
+</div><br>
+
+
+<div id="myDiv125Code"> 
+
+<input id="myButton125" type=button value="KNN Basics"  onclick="{
+                                                                 
+  (async function (){     
+      // need to setup the tensors
+                                                              
+      const myData    = tf.tensor2d([0, 0], [1, 2])
+      const myUnknown = tf.tensor2d([3, 4], [1, 2])
+      const mySqrt    = tf.tensor2d([0.5])
+                                               
+                                                              
+      // now do the distance formula  using Stringed operation format
+                                                                 
+
+      const axis = 1                                                       
+      myKnnArray  = await tf.mul(tf.sub(myData, myUnknown),tf.sub(myData, myUnknown)).sum(axis).pow(mySqrt)
+                                                           
+      document.getElementById('myDiv125').innerHTML =  'The KNN distance from the origin at 0,0 to the location 3,4<br>'   
+      document.getElementById('myDiv125').innerHTML +=  'The KNN tensor is [' + myKnnArray +']<br>'                                                               
+ }() )                                                                
+                                                                 
+                                                                 
+                                                                 
+                                                       
+}"><br><br>
+
+</div>
+<div id='myDiv125'>...</div><br>
+
+<input id="myUpdate125" type=button value="Update and Run" style="visibility:hidden;" onclick="{
+   // first remove first and last line since they are injected
+  myFred = document.getElementById('myTextarea125').value.split('\n')
+  myFred.pop()
+  myFred.push('')
+  myFred.shift()
+  myFred.shift()
+  myJoe = myFred.join('\n')
+  document.getElementById('myDiv125Code').innerHTML =    myJoe 
+  document.getElementById('myButton125').click()
+                                             
+}">
+
+<textarea id="myTextarea125"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
+  if (myOnce125){
+     myTextGrow('myTextarea125', 'myDiv125Code')
+     document.getElementById('myUpdate125').style.visibility = 'visible'
+     myOnce125 = false
+  }
+}">
+Click here to see the working HTML code.
+</textarea><br>
+
+
+
+
+
+<br><br><br><hr><br><br><br><br>
 
 
 
@@ -746,6 +814,7 @@ Use at your own risk!
 <script>
 myOnce987 = true    // so textareas are only clicked once
 myOnce124 = true   
+myOnce125 = true   
  
 function myTextGrow(myT, myB){
    var myCursorStart = document.getElementById(myT).selectionStart
