@@ -20,7 +20,7 @@
 -->
 
  <!-- Note: often nice to load the readable version of the src file. Remember to match the numbers to whatever the newest version is.
-<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.8.0/dist/tf.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.9.1/dist/tf.js"></script>
 --> 
 
 
@@ -32,6 +32,103 @@
     
     
 <h2 align=center>CSV to K Nearest Neighbor (KNN) Classifier</h2>
+
+
+
+
+
+
+
+<div style="font-size:15px; background-color:lightyellow; width:88%;  border:5px solid blue; padding:5px; margin:5px;"> 
+The K-Nearest Neighbor code in Tensorflowjs is fairly easy. It is just calculating the distance between two points on a 
+ graph. In 2D it would just be the distance formula, kind of like the pythagoras equation for the hypotenus of a right triangle 
+ c = square root of (a squared + b squared).
+ 
+ Look at how bareable the code is:
+</div><br>
+
+
+<div id="myDiv124Code"> 
+
+<input id="myButton124" type=button value="KNN Basics"  onclick="{
+                                                                 
+  (async function (){     
+      // need to setup the tensors
+      const myData    = tf.tensor1d([3, 4])
+      const myUnknown = tf.tensor1d([0,0])
+      const mySqrt    = tf.tensor1d([0.5, 0.5])
+
+                                                                 
+      // now do the distance formula                                                           
+      const myDiff = tf.sub(myData, myUnknown);   
+      const mySquaredDiff = tf.mul(myDiff, myDiff);
+      const axis = 1;
+      const mySquaredDiffAdded = mySquaredDiff.sum(axis);
+      const myKNN = mySquaredDiffAdded.pow(mySqrt) 
+      myKnnArray = await myKNN.data()                                                                            
+                                                                                       
+      document.getElementById('myDiv124').innerHTML +=  'The KNN tensor is [' + myKnnArray +']<br>'                                                               
+ }() )                                                                
+                                                                 
+                                                                 
+                                                                 
+                                                       
+}"><br><br>
+
+</div>
+<div id='myDiv124'>...</div><br>
+
+<input id="myUpdate124" type=button value="Update and Run" style="visibility:hidden;" onclick="{
+   // first remove first and last line since they are injected
+  myFred = document.getElementById('myTextarea124').value.split('\n')
+  myFred.pop()
+  myFred.push('')
+  myFred.shift()
+  myFred.shift()
+  myJoe = myFred.join('\n')
+  document.getElementById('myDiv124Code').innerHTML =    myJoe 
+  document.getElementById('myButton124').click()
+                                             
+}">
+
+<textarea id="myTextarea124"  wrap="off"  style= "font-size:15px; color:white; background-color:black; width:90%;"   rows=2 onclick="{
+  if (myOnce124){
+     myTextGrow('myTextarea124', 'myDiv124Code')
+     document.getElementById('myUpdate124').style.visibility = 'visible'
+     myOnce124 = false
+  }
+}">
+Click here to see the working HTML code.
+</textarea><br>
+
+
+
+
+
+<br><br><br><hr><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -637,6 +734,8 @@ Use at your own risk!
 
 <script>
 myOnce987 = true    // so textareas are only clicked once
+myOnce124 = true   
+ 
 function myTextGrow(myT, myB){
    var myCursorStart = document.getElementById(myT).selectionStart
    var myCursorEnd = document.getElementById(myT).selectionEnd
