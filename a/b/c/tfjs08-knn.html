@@ -44,7 +44,7 @@ The K-Nearest Neighbor code in Tensorflowjs is fairly easy. It is just calculati
  graph. In 2D it would just be the distance formula, kind of like the pythagoras equation for the hypotenus of a right triangle 
  c = square root of (a squared + b squared).<br><br>
  Lets try a 3, 4, 5 triangle: If the graph starts at location 0,0 and go 3 along the x axis and 4 up, what is the unknown 
- distance from the origin to this 3, 4 location<br>
+ distance from the origin to this 3, 4 location<br><br>
  
  Look at how bareable the code is:
 </div><br>
@@ -72,7 +72,7 @@ The K-Nearest Neighbor code in Tensorflowjs is fairly easy. It is just calculati
       myKnnArray = await myKNN.data()  
                                                                  
                                                                                        
-      document.getElementById('myDiv124').innerHTML =  'The KNN distance from the origin at 0,0 to the locaiton 3,4<br>'   
+      document.getElementById('myDiv124').innerHTML =  'The KNN distance from the origin at 0,0 to the location 3,4<br>'   
       document.getElementById('myDiv124').innerHTML +=  'The KNN tensor is [' + myKnnArray +']<br>'                                                               
  }() )                                                                
                                                                  
@@ -140,9 +140,14 @@ Click here to see the working HTML code.
 
 <div style="font-size:15px; background-color:lightyellow; width:88%;  border:5px solid blue; padding:5px; margin:5px;"> 
 
+Now try a KNN with real 2 D or more dimensional data. The Machine Learning part is the same as the above example, however lots of
+ regular Javascript is needed to parse and organise the data before and after running the very small Machine Learning KNN classifier.
+ 
 
-Find other text datasets at <a href="https://archive.ics.uci.edu/ml/datasets.html?sort=nameUp&view=list">https://archive.ics.uci.edu/ml/datasets.html?sort=nameUp&view=list</a><br>
-or at <a href="https://en.m.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research">https://en.m.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research</a><br>
+Find other text datasets at <a href="https://archive.ics.uci.edu/ml/datasets.html?sort=nameUp&view=list">
+ https://archive.ics.uci.edu/ml/datasets.html?sort=nameUp&view=list</a><br>
+or at <a href="https://en.m.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research">
+ https://en.m.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research</a><br>
 
 
 </div><br>
