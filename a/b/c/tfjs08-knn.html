@@ -130,7 +130,7 @@ Same thing as above but stringing the operations together in one line which is s
 
 <div id="myDiv125Code"> 
 
-<input id="myButton125" type=button value="KNN Basics"  onclick="{
+<input id="myButton125" type=button value="KNN Basics Using Stringed Operations"  onclick="{
                                                                  
   (async function (){     
       // need to setup the tensors
@@ -140,11 +140,11 @@ Same thing as above but stringing the operations together in one line which is s
       const mySqrt    = tf.tensor2d([0.5])
                                                
                                                               
-      // now do the distance formula  using Stringed operation format
+      // now do the distance formula  using stringed operation format
                                                                  
 
-      const axis = 1                                                       
-      myKnnArray  = await tf.mul(tf.sub(myData, myUnknown),tf.sub(myData, myUnknown)).sum(axis).pow(mySqrt)
+      const myKNN  = tf.mul(tf.sub(myData, myUnknown),tf.sub(myData, myUnknown)).sum(axis).pow(mySqrt)
+      const myKnnArray = await myKNN.data()  
                                                            
       document.getElementById('myDiv125').innerHTML =  'The KNN distance from the origin at 0,0 to the location 3,4<br>'   
       document.getElementById('myDiv125').innerHTML +=  'The KNN tensor is [' + myKnnArray +']<br>'                                                               
