@@ -54,12 +54,13 @@ The K-Nearest Neighbor code in Tensorflowjs is fairly easy. It is just calculati
                                                                  
   (async function (){     
       // need to setup the tensors
-      const myData    = tf.tensor1d([3, 4])
-      const myUnknown = tf.tensor1d([0, 0])
-      const mySqrt    = tf.tensor1d([0.5, 0.5])
-
                                                                  
-      // now do the distance formula                                                           
+      const myData    = tf.tensor1d([0, 0])
+      const myUnknown = tf.tensor1d([3, 4])
+      const mySqrt    = tf.tensor1d([0.5, 0.5])
+                                                              
+      // now do the distance formula  
+                                                                 
       const myDiff = tf.sub(myData, myUnknown);   
       const mySquaredDiff = tf.mul(myDiff, myDiff);
       const axis = 0; // with higher dimensions I set this to 1
