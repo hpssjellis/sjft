@@ -1,0 +1,68 @@
+
+<script>
+
+
+
+myTemp = " <div id=\"myDiv123Code\"> \n \
+\n \
+<input id=\"myButton123\" type=button value=\"Tensorflowjs Version?\"  onclick=\"{   \n \
+      document.getElementById('myDiv123').innerHTML = 'This version of Tensorflowjs = ' + tf.version.tfjs    \n\n \
+}\"><br><br> \n \
+</div> \n \
+<div id='myDiv123'>...</div><br> \n \
+\n \
+\n \
+<input id=\"myUpdate123\" type=button value=\"Update and Run\" style=\"visibility:hidden;\" onclick=\"{  \n \
+   \/\/ first remove first and last line since they are injected     \n \
+  myFred = document.getElementById('myTextarea123').value.split('\\n')    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+    \n \
+"
+
+</script>
+
+
+
+
+
+
+
+
+
+
+<input id="myMany" type=number value=1><br>
+
+
+<input type=button value=run onclick="{
+
+   document.getElementById('myWow01').innerHTML = ''
+
+ for (myLoops=0; myLoops <= document.getElementById('myMany').value-1;  myLoops++){
+
+   document.getElementById('myWow01').innerHTML += myTemp  + '\n'
+
+
+ }
+}"><br>
+
+
+------------------------------- copy the info below this line --------------------------------<br>
+
+<Textarea id="myWow01" rows=100% cols = 50 wrap=false></textarea>
