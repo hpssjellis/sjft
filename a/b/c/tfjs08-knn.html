@@ -59,7 +59,7 @@ The K-Nearest Neighbor code in Tensorflowjs is fairly easy. It is just calculati
                                                               
       const myData    = tf.tensor2d([0, 0], [1, 2])
       const myUnknown = tf.tensor2d([3, 4], [1, 2])
-      const mySqrt    = tf.tensor2d([0.5])
+      const mySqrt    = tf.tensor1d([0.5])
                                                
                                                               
       // now do the distance formula  
@@ -137,7 +137,7 @@ Same thing as above but stringing the operations together in one line which is s
                                                               
       const myData    = tf.tensor2d([0, 0], [1, 2])
       const myUnknown = tf.tensor2d([3, 4], [1, 2])
-      const mySqrt    = tf.tensor2d([0.5])
+      const mySqrt    = tf.tensor1d([0.5])
       const axis = 1
                                                
                                                               
