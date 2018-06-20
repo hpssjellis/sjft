@@ -1,0 +1,79 @@
+
+<script>
+
+document.myIDS = ''
+document.myDuration = 5
+
+function fillOutForm(){
+
+
+
+document.myDuration += parseInt(document.getElementById('myHours').value)
+
+
+document.myIDS +='<tr><td>'+ document.getElementById('mySelect').value + '</td><td>'+ document.getElementById('myHours').value +' hours</td></tr>'
+ 
+document.getElementById('myDiv01').innerHTML =  ' '+ 
+'<h3 align=center>'+document.getElementById('myTitle').value+'<br> 1 Credit ~30 hours IDS (Independent Directed Study)<br> Student Designed course </h3>' +
+'Total Hours = ' + document.myDuration + '<br>' + 
+'<table border=1><tr><th>Topic</th><th>Big Idea</th><th>Study Duration</th></tr>'+
+document.myIDS +
+'<tr><td>Final Project</td><td>Web based demonstration of your learning</td><td>5 hours</td></tr>'+
+'<tr><td></td><td><b>Total</b></td><td><b>'+document.myDuration+' hours</b></td></tr>'+
+'</table><br><br>'+
+'Principal Signed:______, Onsite Teacher:_________, <br><br>Student Name:______________ Student Signature:___________, Date:___________ '
+
+
+}
+
+
+
+
+</script>
+<input id="myTitle" placeholder="Put a Title here for your IDS course" size="100%" value="My IDS course" onchange="{
+   fillOutForm()
+}"><br><br>
+Choose your duration then click the topic<br>
+<input type=number id="myHours" value=5 Max = 25 Min=1> hours of study<br>
+
+
+<select size=7 id="mySelect"onChange="{
+   fillOutForm()
+}">
+
+<option value="Computer Programming</td><td>Basics in Javascript ">2:25 hours, Computer Programming: Basics in Javascript </option>
+<option value="Computer Programming</td><td>Advanced Data Structures and Manipulation">5-25 hours, Computer Programming: Advanced Data Structures and Manipulation ..............................................................................................</option>
+<option value="Computer Programming</td><td>Basics in PHP">2:25 hours, Computer Programming: Basics in PHP </option>
+<option value="Game Development</td><td>Making computer games">2:25 hours, Game Development: Making computer games </option>
+<option value="Robotics</td><td>Designing Robots">2:25 hours, Robotics: Designing Robots </option>
+</select>
+
+
+
+
+
+
+<div id="myDiv01"></div>
+
+
+<ol>Resources:
+<li> Gov BC: <a href="https://www2.gov.bc.ca/gov/content/education-training/administration/legislation-policy/public-schools/earning-credit-through-equivalency-challenge-external-credentials-post-secondary-credit-and-independent-directed-studies">IDS Rules</a>
+<li>Javascript: <a href="https://www.w3schools.com/">w3schools Javascript</a>
+<li>PHP: <a href="https://www.w3schools.com/php/default.asp">w3schools PHP</a>
+<li>Electronics for Robotics: <a hrerf="https://www.particle.io/products/hardware/photon-wifi">Particle.io Photon</a>
+<li> Machine Learning: <a href="https://js.tensorflow.org/#getting-started">Tensorflowjs</a>
+<li> Fraser Valley GearBots: <a href="http://www.gearbots.org/"> http://www.gearbots.org/</a>
+<li> 3D Printing: <a href="http://fvmakers.com/"> http://fvmakers.com/ </a>
+</ol>
+
+
+
+<ol>General Safety:
+<li> As this is an independent study, safety and sensible decisions is paramount. A high level of safe decisions is needed to remain doing the IDS course.
+<li> No use of liquids without a knowledgeable adult present
+<li> No assignments using (flying) drones
+<li>
+<li>
+<li>
+<li> 
+</ol>
